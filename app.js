@@ -6,11 +6,13 @@ const categoryRoute = require("./router/category")
 const itemRouter = require("./router/item")
 const cookieParser = require("cookie-parser")
 const is_auth = require("./controler/is_auth")
+const upload = require("express-fileupload");
 const app = new express();
 
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 app.use(cookieParser(process.env.cookieToken))
+app.use(upload());
 
 app.use("/authroute", authRoute)
 app.use("/categoryroute", is_auth, categoryRoute)
